@@ -25,7 +25,7 @@ SECRET_KEY = 'lvg*c$2*lxss31e^8(v1n+@)+$4mevyo#55e=vts&td^7(r(y='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
