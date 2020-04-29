@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+input[type=text], select {
+  width: 23%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+</style>
+
+<!-- HOME -->
+    <section class="home-section section-hero overlay bg-image" style="background-image: url('static/images/hero_1.jpg');" id="home-section">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-12">
+            <div class="mb-5 text-center">
+              <h1 class="text-white font-weight-bold">IT JOBS BOARD</h1>
+              <p>At Sountern</p>
+            </div>
+            <form method="get" class="search-jobs-form">
+            {{myFilter.form}}
+              <button type="submit" class="btn btn-primary "><span class="icon-search icon mr-2"></span>Find Job</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <a href="#next" class="scroll-button smoothscroll">
+        <span class=" icon-keyboard_arrow_down"></span>
+      </a>
+
+    </section>
+    
+    
+    <section class="site-section">
+      <div class="container">
+
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-7 text-center">
+            <h2 class="section-title mb-2">{{ posts.count }} Job Listed</h2>
+          </div>
+        </div>
+        {% for i in post %}
+        <ul class="job-listings mb-5">
+          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+            <a href="{% url 'post:post_detail' i.id  %}"></a>
+            <div class="job-listing-logo"> {% if i.user == user %}
+              <img class="border p-1 d-inline-block rounded" src="{{user.companyprofile.com_img.url}}" width="200" height="200">
+              {% else %} 
+              <img class="border p-1 d-inline-block rounded" src="{{i.user.companyprofile.com_img.url}}" width="200" height="200">    
+              {% endif %}
+            </div>
+
+            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                <h2>{{ i.title }} </h2><br>
+              </div>
+              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                <span class="icon-room"></span>{{ i.date_posted|date:"F d, Y"}}<br>
+                <h6 class="text-danger"> {{ i.timestamp|timesince }} ago</h6>
+              </div>
+              <div class="job-listing-meta">
+                <span class="badge badge-danger">{{ i.type_job }}</span>
+              </div>
+              <div class="job-listing-meta">
+                <span class="badge badge-primary">{{ i.location }}</span>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+      
+        
+        
+
+        <div class="row pagination-wrap">
+          <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
+            <span>Showing 1-7 Of 43,167 Jobs</span>
+          </div>
+          <div class="col-md-6 text-center text-md-right">
+            <div class="custom-pagination ml-auto">
+              <a href="#" class="prev">Prev</a>
+              <div class="d-inline-block">
+              <a href="#" class="active">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#">4</a>
+              </div>
+              <a href="#" class="next">Next</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="site-section services-section bg-light block__62849" id="next-section">
+      <div class="container">
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-7 text-center">
+            <h2 class="section-title mb-2">Find Job By Position</h2>
+          </div>
+        </div>
+        
+        <div class="row">        
+        
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+            
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-magnet d-block"></span></span>
+              <h3>Graphic design</h3>             
+            </a>
+
+          </div>
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+            
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-trophy d-block"></span></span>
+              <h3>Information security</h3>              
+            </a>            
+
+          </div>
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+            
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-laptop d-block"></span></span>
+              <h3>Information system </h3>             
+            </a>            
+
+          </div>
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+            
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-search d-block"></span></span>
+              <h3>Software / Programming</h3>             
+            </a>
+
+          </div>
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+            
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-paper-plane d-block"></span></span>
+              <h3>Consultant</h3>            
+            </a>
+
+          </div>
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+            
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-plug d-block"></span></span>
+              <h3>IT support</h3>             
+            </a>
+
+          </div>
+          
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-magnet d-block"></span></span>
+              <h3>Network</h3>             
+            </a>
+
+          </div>
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+            
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-trophy d-block"></span></span>
+              <h3>Database</h3>              
+            </a>            
+
+          </div>
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+            
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-laptop d-block"></span></span>
+              <h3>Test Systems</h3>             
+            </a>            
+
+          </div>
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+            
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-search d-block"></span></span>
+              <h3>Hardware</h3>             
+            </a>
+
+          </div>
+          <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+            
+            <a href="service-single.html" class="block__16443 text-center d-block">
+              <span class="custom-icon mx-auto"><span class="icon-paper-plane d-block"></span></span>
+              <h3>Mobile application</h3>            
+            </a>
+
+          
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+{% endblock %}
